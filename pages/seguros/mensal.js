@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 // Ícones específicos - CORRIGIDO: Incluindo todos os ícones usados neste arquivo
 import {
     FaWhatsapp, FaCar, FaMotorcycle, FaCalendarCheck,
