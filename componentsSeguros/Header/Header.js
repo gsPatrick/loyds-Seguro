@@ -34,8 +34,8 @@ const Header = () => {
         }`}
       >
         <div className="container mx-auto flex items-center justify-between p-4">
-          {/* Logo */}
-          <Link href="/seguros" className="text-2xl font-bold text-lo-white">
+          {/* Logo - CORRIGIDO: Usando text-white */}
+          <Link href="/seguros" className="text-2xl font-bold text-white">
             Loyds<span className="text-lo-peach"> </span>Seguros
           </Link>
 
@@ -45,7 +45,7 @@ const Header = () => {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-lo-white/80 hover:text-lo-peach transition-colors"
+                className="text-sm font-medium text-white/80 hover:text-lo-peach transition-colors"
               >
                 {link.name}
               </Link>
@@ -54,31 +54,32 @@ const Header = () => {
 
           {/* CTA Desktop */}
           <div className="hidden md:block">
+            {/* O link do botão CTA desktop foi ajustado para usar o ID da seção de seguros, conforme a home (index.js) */}
             <Link
-              href="#nossos-seguros"
+              href="/seguros#nossos-seguros"
               className="px-5 py-2.5 text-sm font-bold text-lo-dark-blue bg-lo-peach rounded-lg shadow-md hover:bg-opacity-90 transition-all"
             >
               Simule Agora
             </Link>
           </div>
 
-          {/* Menu Mobile (Hamburger) */}
+          {/* Menu Mobile (Hamburger) - CORRIGIDO: Usando text-white para o ícone */}
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-lo-white z-50">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-white z-50">
               {isOpen ? <XMarkIcon className="h-7 w-7" /> : <Bars3Icon className="h-7 w-7" />}
             </button>
           </div>
         </div>
       </motion.header>
 
-      {/* Painel do Menu Mobile */}
+      {/* Painel do Menu Mobile - CORRIGIDO: Usando bg-lo-dark-blue/50 */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-lo-dark-blue/90 backdrop-blur-lg z-40 flex items-center justify-center"
+            className="fixed inset-0 bg-lo-dark-blue/50 backdrop-blur-lg z-40 flex items-center justify-center"
           >
             <motion.nav
               initial={{ y: -50, opacity: 0 }}
@@ -86,18 +87,20 @@ const Header = () => {
               transition={{ delay: 0.2, type: 'spring' }}
               className="flex flex-col items-center gap-y-10"
             >
+              {/* Links do Menu Mobile - CORRIGIDO: Usando text-white */}
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-2xl font-bold text-lo-white"
+                  className="text-2xl font-bold text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
+              {/* CTA do Menu Mobile - O link do botão CTA mobile foi ajustado para usar o ID da seção de seguros, conforme a home (index.js) */}
               <Link
-                href="#nossos-seguros"
+                href="/seguros#nossos-seguros"
                 className="mt-6 px-8 py-4 text-lg font-bold text-lo-dark-blue bg-lo-peach rounded-lg shadow-md"
                 onClick={() => setIsOpen(false)}
               >
