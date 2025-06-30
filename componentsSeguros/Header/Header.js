@@ -55,12 +55,7 @@ const Header = () => {
           {/* CTA Desktop */}
           <div className="hidden md:block">
             {/* O link do botão CTA desktop foi ajustado para usar o ID da seção de seguros, conforme a home (index.js) */}
-            <Link
-              href="/seguros#nossos-seguros"
-              className="px-5 py-2.5 text-sm font-bold text-lo-dark-blue bg-lo-peach rounded-lg shadow-md hover:bg-opacity-90 transition-all"
-            >
-              Simule Agora
-            </Link>
+
           </div>
 
           {/* Menu Mobile (Hamburger) - CORRIGIDO: Usando text-white para o ícone */}
@@ -99,13 +94,6 @@ const Header = () => {
                 </Link>
               ))}
               {/* CTA do Menu Mobile - O link do botão CTA mobile foi ajustado para usar o ID da seção de seguros, conforme a home (index.js) */}
-              <Link
-                href="/seguros#nossos-seguros"
-                className="mt-6 px-8 py-4 text-lg font-bold text-lo-dark-blue bg-lo-peach rounded-lg shadow-md"
-                onClick={() => setIsOpen(false)}
-              >
-                Simule Agora
-              </Link>
             </motion.nav>
           </motion.div>
         )}
