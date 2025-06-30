@@ -17,7 +17,7 @@ export default function LoydsSegurosPage() {
     <>
       <Head>
         <title>Loyds Seguros | Proteção Descomplicada para sua Jornada</title>
-        <meta name="description" content="Seguros para carros, motos e planos mensais. Calcule e contrate online com a Loyds Seguros." />
+        <meta name="description" content="Seguros para Auto, motos e planos mensais. Calcule e contrate online com a Loyds Seguros." />
       </Head>
       
       <Header />

@@ -86,7 +86,7 @@ const WhatsAppCTAGeneral = () => {
   const services = [
     { icon: <FaCar size={40} />, title: 'Seguro Auto' },
     { icon: <FaMotorcycle size={40} />, title: 'Seguro Moto' },
-    { icon: <FaCalendarCheck size={40} />, title: 'Plano Mensal 24h' },
+    { icon: <FaCalendarCheck size={40} />, title: 'Seguro Mensal' },
   ];
 
   // As variants Framer Motion para o contêiner principal (a caixa com blur)

@@ -18,7 +18,7 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Seguro para Carros', href: '/seguros/carro' },
+    { name: 'Seguro para Auto', href: '/seguros/carro' },
     { name: 'Seguro para Motos', href: '/seguros/moto' },
     { name: 'Seguro Mensal', href: '/seguros/mensal' },
   ];
