@@ -234,7 +234,7 @@ export default function SeguroMotoPage() {
 
   // Placeholder para o link da Porto Seguro MOTO
   // !!! SUBSTITUA ESTE LINK PELO LINK CORRETO DA PORTO SEGURO PARA MOTO !!!
-  const portoMotoLink = "#"; // Exemplo: "https://www.portoseguro.com.br/sua-loja/cotar-moto?susep=40ZE3J..."
+  const portoMotoLink = "https://www.portoseguro.com.br/loja/seguro-auto?new_plan=1&social_media=OTHERS&link_uuid=16f87675-6d8c-4d88-838d-1f10387736d4&origem=SITE_CORRETOR&cod=01d8cd706dba47cb9f4d53043fdfdbda"; // Exemplo: "https://www.portoseguro.com.br/sua-loja/cotar-moto?susep=40ZE3J..."
 
 
   React.useEffect(() => {

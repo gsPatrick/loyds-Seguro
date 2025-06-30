@@ -185,7 +185,7 @@ export default function SeguroCarroPage() {
   const whatsappNumber = '5521993519090';
   const whatsappMessage = encodeURIComponent('Olá, gostaria de solicitar informações sobre Seguro Auto pela Loyds Seguros.');
 
-  const portoLink = "https://www.portoseguro.com.br/loja/seguro-auto?new_plan=1&social_media=OTHERS&link_uuid=16f87675-6d8c-4d88-838d-1f10387736d4&utm_source=40ZE3J&utm_medium=geradorLinks&utm_content=LOYDS_SEGUROS_E_ASSISTENCIA&utm_campaign=GeradordeLinks_BBN9YJ&origem=SITE_CORRETOR&cod=01d8cd706dba47cb9f4d53043fdfdbda";
+  const portoLink = "https://www.portoseguro.com.br/loja/seguro-auto?new_plan=1&social_media=OTHERS&link_uuid=16f87675-6d8c-4d88-838d-1f10387736d4&origem=SITE_CORRETOR&cod=01d8cd706dba47cb9f4d53043fdfdbda";
   const azulLink = "https://assinatura.azulseguros.com.br/?susep=40ZE3J&origem=SITECORRETOR";
 
 
