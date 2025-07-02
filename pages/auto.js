@@ -15,8 +15,8 @@ if (typeof window !== "undefined") {
 }
 
 // --- IMPORTAÇÕES DE COMPONENTES GERAIS ---
-import Header from '../../componentsSeguros/Header/Header.js';
-import Footer from '../../componentsSeguros/Footer/Footer.js';
+import Header from '../componentsSeguros/Header/Header.js';
+import Footer from '../componentsSeguros/Footer/Footer.js';
 import PartnerLogos from '@/componentsSeguros/PartnerLogos/PartnerLogos.js';
 import WhatsAppCTAGeneral from '@/componentsSeguros/CTA/WhatsappOnly.js';
 
@@ -212,8 +212,8 @@ export default function SeguroCarroPage() {
   }, []);
 
   const otherInsuranceLinks = [
-    { title: 'Seguro Moto', href: '/seguros/moto', icon: <FaMotorcycle /> },
-    { title: 'Plano Mensal 24h', href: '/seguros/mensal', icon: <FaCalendarCheck /> },
+    { title: 'Seguro Moto', href: '/moto', icon: <FaMotorcycle /> },
+    { title: 'Plano Mensal 24h', href: '/mensal', icon: <FaCalendarCheck /> },
   ];
 
   // Lista de coberturas e condições para os cards (agora com ícones)

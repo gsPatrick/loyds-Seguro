@@ -59,19 +59,19 @@ const InsuranceSection = () => {
       icon: <FaCar />,
       title: 'Seguro Auto',
       description: 'Consultoria especializada para encontrar a melhor opção de Seguro Auto entre as principais seguradoras. Coberturas flexíveis para seu perfil, com assistência 24h inclusa.',
-      href: '/seguros/carro' // Link confirmado
+      href: '/auto' // Link confirmado
     },
     {
       icon: <FaMotorcycle />,
       title: 'Seguro Moto',
       description: 'Intermediamos as melhores soluções em Seguro Moto com seguradoras parceiras. Cotações personalizadas para sua necessidade, cobrindo roubo, colisão e assistência 24h.',
-      href: '/seguros/moto' // Link confirmado
+      href: '/moto' // Link confirmado
     },
     {
       icon: <FaCalendarAlt />,
       title: 'Plano Mensal Assistência 24h',
       description: 'Suporte 24h em todo território nacional sem contrato de seguro tradicional. Conte com guincho, pane elétrica/mecânica, troca de pneus e chaveiro.',
-      href: '/seguros/mensal' // Link confirmado
+      href: '/mensal' // Link confirmado
     },
   ];
 

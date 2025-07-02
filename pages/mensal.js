@@ -1,31 +1,30 @@
-// pages/seguros/moto.js
+// pages/seguros/mensal.js
 
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-// Ícones específicos (ajustados)
+// Ícones específicos - CORRIGIDO: Incluindo todos os ícones usados neste arquivo
 import {
     FaWhatsapp, FaCar, FaMotorcycle, FaCalendarCheck,
     FaLock, FaUsers, FaPlusCircle, FaCloudShowersHeavy, FaFire,
-    FaTruckPickup, FaTools, FaCheckCircle, // Ícone para "Por Que Escolher"
+    FaTruckPickup, FaTools, FaCheckCircle, FaRoad
 } from 'react-icons/fa';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import WhatsAppCTAGeneral from '@/componentsSeguros/CTA/WhatsappOnly.js';
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 // --- IMPORTAÇÕES DE COMPONENTES GERAIS ---
-import Header from '../../componentsSeguros/Header/Header.js';
-import Footer from '../../componentsSeguros/Footer/Footer.js';
+import Header from '../componentsSeguros/Header/Header.js';
+import Footer from '../componentsSeguros/Footer/Footer.js';
 import PartnerLogos from '@/componentsSeguros/PartnerLogos/PartnerLogos.js';
-import WhatsAppCTAGeneral from '@/componentsSeguros/CTA/WhatsappOnly.js';
-
 // --- Componente para o Card de Cobertura/Condição (Estilo Moderno com Ícones) ---
-// Mantido igual
+// Reutilizado, já tem o estilo moderno com ícones
 const CoverageCard = ({ item, index }) => {
   const cardRef = React.useRef(null);
   const handleMouseMove = (e) => {
@@ -50,7 +49,7 @@ const CoverageCard = ({ item, index }) => {
     <motion.div
       ref={cardRef}
       variants={cardVariants}
-      className="flex flex-col items-start gap-3 p-6 rounded-lg border border-white/10 text-white/80 h-full relative overflow-hidden" // items-start para alinhar no topo, h-full para grid uniforme
+      className="flex flex-col items-start gap-3 p-6 rounded-lg border border-white/10 text-white/80 h-full relative overflow-hidden"
       style={{
          background: 'radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.04), transparent 80%)',
          backdropFilter: 'blur(0px)',
@@ -68,8 +67,9 @@ const CoverageCard = ({ item, index }) => {
   );
 };
 
-// --- Componente para o Card de Link Direto (Porto/Azul - Logos Maiores) ---
-// Mantido igual
+// --- Componente para o Card de Link Direto (Porto/Azul - NÃO USADO NESTA PÁGINA) ---
+// Mantido aqui caso queira reintroduzir links diretos no futuro, mas não usado ativamente.
+// Pode ser removido se não for relevante.
 const DirectQuoteCard = ({ logoSrc, logoAlt, title, description, href }) => {
     const cardRef = React.useRef(null);
     const handleMouseMove = (e) => {
@@ -129,8 +129,8 @@ const DirectQuoteCard = ({ logoSrc, logoAlt, title, description, href }) => {
     );
 };
 
-// --- Componente para o Card de Outro Seguro (Estilo Moderno e Clicável) ---
-// Mantido igual
+// --- Componente para o Card de Outra Modalidade (Estilo Moderno e Clicável) ---
+// Reutilizado
 const InteractiveServiceLinkCard = ({ icon, title, href, index }) => {
     const cardRef = React.useRef(null);
     const handleMouseMove = (e) => {
@@ -184,6 +184,7 @@ const InteractiveServiceLinkCard = ({ icon, title, href, index }) => {
 };
 
 // --- Componente para os Itens da Seção "Por Que Escolher" (Estilo Card Moderno) ---
+// Reutilizado
 const WhyChooseItem = ({ icon, text, index }) => {
      const cardRef = React.useRef(null);
     const handleMouseMove = (e) => {
@@ -200,7 +201,7 @@ const WhyChooseItem = ({ icon, text, index }) => {
      };
 
      const itemVariants = {
-        hidden: { opacity: 0, y: 30 }, // Animação similar aos outros cards
+        hidden: { opacity: 0, y: 30 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut', delay: index * 0.1 } },
     };
 
@@ -208,7 +209,7 @@ const WhyChooseItem = ({ icon, text, index }) => {
         <motion.div
             ref={cardRef}
             variants={itemVariants}
-            className="flex flex-col items-center text-center gap-3 p-6 rounded-lg border border-white/10 text-white/80 h-full relative overflow-hidden" // Estilo de card
+            className="flex flex-col items-center text-center gap-3 p-6 rounded-lg border border-white/10 text-white/80 h-full relative overflow-hidden"
              style={{
                  background: 'radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.04), transparent 80%)',
                  backdropFilter: 'blur(0px)',
@@ -216,26 +217,21 @@ const WhyChooseItem = ({ icon, text, index }) => {
              }}
              onMouseMove={handleMouseMove}
              onMouseLeave={handleMouseLeave}
-             whileHover={{ boxShadow: '0 0 20px rgba(255, 255, 255, 0.08)' }} // Sombra sutil no hover
+             whileHover={{ boxShadow: '0 0 20px rgba(255, 255, 255, 0.08)' }}
         >
             <div className="mb-2 text-lo-peach relative z-10">
-                {React.cloneElement(icon, { size: 30 })} {/* Ícone com tamanho */}
+                {React.cloneElement(icon, { size: 30 })}
             </div>
-            <span className="text-sm relative z-10 font-semibold">{text}</span> {/* Texto do item */}
+            <span className="text-sm relative z-10 font-semibold">{text}</span>
         </motion.div>
     );
 };
 
 
-export default function SeguroMotoPage() {
+export default function SeguroMensalPage() {
   const whatsappRef = React.useRef(null);
   const whatsappNumber = '5521993519090';
-  const whatsappMessage = encodeURIComponent('Olá, gostaria de solicitar informações sobre Seguro Moto pela Loyds Seguros.');
-
-  // Placeholder para o link da Porto Seguro MOTO
-  // !!! SUBSTITUA ESTE LINK PELO LINK CORRETO DA PORTO SEGURO PARA MOTO !!!
-  const portoMotoLink = "https://www.portoseguro.com.br/loja/seguro-auto?new_plan=1&social_media=OTHERS&link_uuid=16f87675-6d8c-4d88-838d-1f10387736d4&origem=SITE_CORRETOR&cod=01d8cd706dba47cb9f4d53043fdfdbda"; // Exemplo: "https://www.portoseguro.com.br/sua-loja/cotar-moto?susep=40ZE3J..."
-
+  const whatsappMessage = encodeURIComponent('Olá, gostaria de solicitar informações sobre o Plano Mensal de Assistência 24h da Loyds Seguros.');
 
   React.useEffect(() => {
     const buttonEl = whatsappRef.current;
@@ -259,22 +255,21 @@ export default function SeguroMotoPage() {
      };
   }, []);
 
+
   const otherInsuranceLinks = [
-    { title: 'Seguro Auto', href: '/seguros/carro', icon: <FaCar /> },
-    { title: 'Plano Mensal 24h', href: '/seguros/mensal', icon: <FaCalendarCheck /> },
+    { title: 'Seguro Auto', href: '/auto', icon: <FaCar /> },
+    { title: 'Seguro Moto', href: '/moto', icon: <FaMotorcycle /> },
   ];
 
-  // Lista de coberturas e condições para os cards (com ícones)
-  const coverages = [
-    { icon: <FaMotorcycle />, text: "BATIDA PARCIAL OU TOTAL" },
-    { icon: <FaLock />, text: "ROUBO E FURTO" },
-    { icon: <FaUsers />, text: "COBERTURA A TERCEIROS (Danos Materiais e Corporais)" },
-    { icon: <FaPlusCircle />, text: "AUMENTO DE COBERTURA A TERCEIROS" },
-    { icon: <FaCloudShowersHeavy />, text: "ALAGAMENTO" },
-    { icon: <FaFire />, text: "INCÊNDIO" },
-    { icon: <FaTruckPickup />, text: "ASSISTÊNCIA 24H: REBOQUE, CHAVEIRO, TROCA DE PNEU, AUXÍLIO MECÂNICO, etc." },
-    { icon: <FaTools />, text: "REPAROS PARA VIDROS, FARÓIS E RETROVISORES" },
-    { icon: <FaCalendarCheck />, text: "DEMAIS SERVIÇOS E COBERTURAS ADICIONAIS" },
+  // Lista de serviços para o Plano Mensal (com ícones)
+  const coverages = [ // Mantido o nome 'coverages' por convenção, mas são 'serviços' aqui
+    { icon: <FaTruckPickup />, text: "REBOQUE / GUINCHO" },
+    { icon: <FaTools />, text: "PANE ELÉTRICA / MECÂNICA" },
+    { icon: <FaCar />, text: "TROCA DE PNEUS" },
+    { icon: <FaLock />, text: "CHAVEIRO" },
+    { icon: <FaRoad />, text: "ATENDIMENTO EM TODO TERRITÓRIO NACIONAL" },
+    { icon: <FaCalendarCheck />, text: "PLANO MENSAL (SEM CONTRATO ANUAL)" },
+    // Adicionar mais itens se houver outras assistências
   ];
 
     const whyChooseItems = [
@@ -288,14 +283,14 @@ export default function SeguroMotoPage() {
   return (
     <>
       <Head>
-        <title>Loyds Seguros | Cotação e Consultoria de Seguro Moto</title>
-        <meta name="description" content="Simule seu seguro de moto online com a Loyds Seguros, corretora parceira da Porto Seguro. Obtenha consultoria especializada via WhatsApp." />
+        <title>Loyds Seguros | Plano Mensal Assistência 24h</title>
+        <meta name="description" content="Contrate o Plano Mensal de Assistência 24h da Loyds Seguros. Suporte completo sem a necessidade de seguro tradicional." />
       </Head>
 
       <Header />
 
       <main style={{ backgroundColor: '#121313' }} className="pt-[73px]">
-        {/* --- SEÇÃO HERO/INTRO DO SEGURO MOTO --- */}
+        {/* --- SEÇÃO HERO/INTRO DO PLANO MENSAL --- */}
         <section className="relative w-full py-16 md:py-24 flex flex-col items-center justify-center text-center overflow-hidden" style={{ backgroundColor: '#121313' }}>
             <div className="container mx-auto px-4 max-w-5xl">
                 <motion.h1
@@ -304,7 +299,9 @@ export default function SeguroMotoPage() {
                   transition={{ duration: 0.8, ease: 'circOut' }}
                   className="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6"
                 >
-                    Seguro Moto <span className="text-white/70">com a consultoria que você merece.</span>
+                    Plano Mensal Assistência 24h
+                    <br/>
+                    <span className="text-white/70">suporte completo sem seguro tradicional.</span>
                 </motion.h1>
                 <motion.p
                    initial={{ opacity: 0, y: 30 }}
@@ -312,46 +309,18 @@ export default function SeguroMotoPage() {
                    transition={{ duration: 0.8, ease: 'circOut', delay: 0.2 }}
                    className="text-lg md:text-xl text-white/60 max-w-3xl mx-auto"
                 >
-                   Encontre a proteção ideal para a sua moto com agilidade e transparência. Na Loyds Seguros, intermediamos as melhores opções entre as principais seguradoras do mercado.
+                   Uma alternativa prática e flexível para quem busca assistência 24h em todo o Brasil, sem a necessidade de um contrato de seguro completo. Ideal para o seu dia a dia ou para imprevistos na estrada.
                 </motion.p>
 
-                {/* --- SEÇÃO DE LINK DIRETO PARA COTAÇÃO (PORTO - CARD MODERNO) --- */}
-                <motion.div
-                    className="mt-16 max-w-md mx-auto"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                    variants={{
-                        visible: { transition: { staggerChildren: 0.15 } },
-                    }}
-                >
-                    {/* Apenas o card da Porto Seguro para Moto */}
-                    <DirectQuoteCard
-                         logoSrc="/icons/portoSeguros.png" // Caminho do seu logo Porto Seguro P/B
-                         logoAlt="Logo Porto Seguro"
-                         title="Cote na Porto Seguro"
-                         description="Simule online diretamente com a Porto Seguro via Loyds."
-                         href={portoMotoLink} // USANDO LINK PLACEHOLDER - SUBSTITUA!
-                    />
-                </motion.div>
-                 <motion.p
-                   initial={{ opacity: 0, y: 20 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true, amount: 0.3 }}
-                   transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
-                   className="mt-12 text-sm text-white/50 max-w-3xl mx-auto"
-                >
-                  Ao clicar, você será redirecionado para o site da seguradora parceira para simulação.
-                </motion.p>
+                 {/* Não há cards de link direto para seguradoras nesta página */}
+
             </div>
         </section>
 
-        {/* --- SEÇÃO PARTNER LOGOS --- */}
-< WhatsAppCTAGeneral />
-         <PartnerLogos />
+        < PartnerLogos />
+        < WhatsAppCTAGeneral />
 
-
-        {/* --- SEÇÃO COBERTURAS E CONDIÇÕES (COM CARDS MODERNOS E ÍCONES) --- */}
+        {/* --- SEÇÃO SERVIÇOS OFERECIDOS (COM CARDS MODERNOS E ÍCONES) --- */}
         <section className="py-16 sm:py-24" style={{ backgroundColor: '#121313' }}>
           <div className="container mx-auto px-4">
             <motion.h2
@@ -361,7 +330,7 @@ export default function SeguroMotoPage() {
               transition={{ duration: 0.8, ease: 'circOut' }}
               className="text-4xl sm:text-5xl font-extrabold text-white tracking-tighter text-center mb-12"
             >
-              Coberturas Essenciais e Serviços 24h
+              Serviços Essenciais 24h Inclusos
             </motion.h2>
             <motion.div
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6"
@@ -372,16 +341,14 @@ export default function SeguroMotoPage() {
                     visible: { transition: { staggerChildren: 0.08 } },
                  }}
             >
-              {/* Mapeia a lista de coberturas */}
+              {/* Mapeia a lista de serviços/coberturas */}
               {coverages.map((item, index) => (
                 <CoverageCard key={index} item={item} index={index} />
               ))}
                {/* Adiciona cards vazios para alinhamento no grid (2 ou 3 colunas) */}
-               {/* Removi as divs vazias e ajustei o grid. Flexbox pode ser uma alternativa mais robusta ou garantir que o número de itens seja divisível pelas colunas. Mantendo grid por enquanto. */}
-                {coverages.length % 2 !== 0 && <div className="hidden md:block col-span-1"></div>}
-                {coverages.length % 3 === 1 && <div className="hidden lg:block col-span-1"></div>}
-                {coverages.length % 3 === 2 && <div className="hidden lg:block col-span-1"></div>}
-
+               {coverages.length % 2 !== 0 && <div className="hidden md:block col-span-1"></div>}
+               {coverages.length % 3 === 1 && <div className="hidden lg:block col-span-1"></div>}
+               {coverages.length % 3 === 2 && <div className="hidden lg:block col-span-1"></div>}
             </motion.div>
 
             {/* --- CTA WHATSAPP PULSANTE APÓS OS CARDS --- */}
@@ -393,7 +360,7 @@ export default function SeguroMotoPage() {
               className="mt-16 text-center flex flex-col items-center"
             >
               <p className="text-white/70 text-lg mb-8">
-                Tem dúvidas, precisa de ajuda com a cotação ou deseja consultoria personalizada?
+                Tem dúvidas ou quer saber mais sobre como funciona o Plano Mensal?
               </p>
                <p className="text-lo-peach font-bold mb-6">
                  Fale com um consultor Loyds Seguros agora mesmo!
@@ -445,7 +412,7 @@ export default function SeguroMotoPage() {
             </div>
         </section>
 
-        < WhatsAppCTAGeneral />
+              < WhatsAppCTAGeneral />
 
          {/* --- SEÇÃO: POR QUE ESCOLHER A NOSSA EMPRESA? (Estilo Card Moderno) --- */}
          <section className="py-16 sm:py-24" style={{ backgroundColor: '#121313' }}>
@@ -481,13 +448,12 @@ export default function SeguroMotoPage() {
                     {whyChooseItems.map((item, index) => (
                         <WhyChooseItem key={index} item={item} index={index} icon={item.icon} text={item.text}/>
                     ))}
-                     {/* Adiciona card vazio invisível se o número de itens for ímpar */}
                      {whyChooseItems.length % 2 !== 0 && (
                         <div className="hidden md:block col-span-1"></div>
                     )}
                 </motion.div>
 
-                 {/* Link para visitar (assumindo link para a seção de contato) */}
+                 {/* Link para visitar (assumindo link para a seção de contato) - Mantido como antes */}
                  <motion.div
                    initial={{ opacity: 0, y: 30 }}
                    whileInView={{ opacity: 1, y: 0 }}
@@ -514,7 +480,7 @@ export default function SeguroMotoPage() {
          </section>
 
 
-        {/* --- SEÇÃO DE OUTROS SEGUROS (CARDS MODERNOS E CLICÁVEIS) --- */}
+        {/* --- SEÇÃO DE OUTRAS MODALIDADES (CARDS MODERNOS E CLICÁVEIS) --- */}
         <section className="py-16 sm:py-24" style={{ backgroundColor: '#121313' }}>
             <div className="container mx-auto px-4 text-center">
                 <motion.h2

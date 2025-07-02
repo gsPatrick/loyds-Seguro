@@ -18,9 +18,9 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Seguro para Auto', href: '/seguros/carro' },
-    { name: 'Seguro para Motos', href: '/seguros/moto' },
-    { name: 'Seguro Mensal', href: '/seguros/mensal' },
+    { name: 'Seguro para Auto', href: '/auto' },
+    { name: 'Seguro para Motos', href: '/moto' },
+    { name: 'Seguro Mensal', href: '/mensal' },
   ];
 
   return (
@@ -35,7 +35,7 @@ const Header = () => {
       >
         <div className="container mx-auto flex items-center justify-between p-4">
           {/* Logo - CORRIGIDO: Usando text-white */}
-          <Link href="/seguros" className="text-2xl font-bold text-white">
+          <Link href="/" className="text-2xl font-bold text-white">
             Loyds<span className="text-lo-peach"> </span>Seguros
           </Link>
 

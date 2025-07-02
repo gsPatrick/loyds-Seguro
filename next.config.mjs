@@ -3,11 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
-      {
-        source: '/',
-        destination: '/seguros',
-        permanent: true,
-      },
+      // ESTA LISTA DEVE ESTAR VAZIA ou conter APENAS redirects que você realmente quer.
+      // SE HOUVER UM REDIRECT DE '/' PARA '/seguros' AQUI, REMOVA-O.
     ];
   },
 };
