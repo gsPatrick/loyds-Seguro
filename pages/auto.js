@@ -213,7 +213,7 @@ export default function SeguroCarroPage() {
 
   const otherInsuranceLinks = [
     { title: 'Seguro Moto', href: '/moto', icon: <FaMotorcycle /> },
-    { title: 'Plano Mensal 24h', href: '/mensal', icon: <FaCalendarCheck /> },
+    { title: 'Seguro Mensal', href: '/mensal', icon: <FaCalendarCheck /> },
   ];
 
   // Lista de coberturas e condições para os cards (agora com ícones)

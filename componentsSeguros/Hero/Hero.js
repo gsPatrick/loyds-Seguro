@@ -97,7 +97,7 @@ const Hero = () => {
     const insuranceLinks = [
         { name: 'Seguro Auto', href: '/auto', icon: <FaCar className="mr-2"/> },
         { name: 'Seguro Moto', href: '/moto', icon: <FaMotorcycle className="mr-2"/> },
-        { name: 'Plano Mensal 24h', href: '/mensal', icon: <FaCalendarCheck className="mr-2"/> }, // Ajustado o nome para bater com a estrutura
+        { name: 'Seguro Mensal', href: '/mensal', icon: <FaCalendarCheck className="mr-2"/> }, // Ajustado o nome para bater com a estrutura
     ];
 
     return (

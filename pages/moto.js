@@ -261,7 +261,7 @@ export default function SeguroMotoPage() {
 
   const otherInsuranceLinks = [
     { title: 'Seguro Auto', href: '/auto', icon: <FaCar /> },
-    { title: 'Plano Mensal 24h', href: '/mensal', icon: <FaCalendarCheck /> },
+    { title: 'Seguro Mensal', href: '/mensal', icon: <FaCalendarCheck /> },
   ];
 
   // Lista de coberturas e condições para os cards (com ícones)
