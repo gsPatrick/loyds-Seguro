@@ -1,11 +1,11 @@
-// pages/seguros/mensal.js
+// pages/mensal.js
 
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-// Ícones específicos - CORRIGIDO: Incluindo todos os ícones usados neste arquivo
+// Ícones específicos
 import {
     FaWhatsapp, FaCar, FaMotorcycle, FaCalendarCheck,
     FaLock, FaUsers, FaPlusCircle, FaCloudShowersHeavy, FaFire,
@@ -23,8 +23,8 @@ if (typeof window !== "undefined") {
 import Header from '../componentsSeguros/Header/Header.js';
 import Footer from '../componentsSeguros/Footer/Footer.js';
 import PartnerLogos from '@/componentsSeguros/PartnerLogos/PartnerLogos.js';
+
 // --- Componente para o Card de Cobertura/Condição (Estilo Moderno com Ícones) ---
-// Reutilizado, já tem o estilo moderno com ícones
 const CoverageCard = ({ item, index }) => {
   const cardRef = React.useRef(null);
   const handleMouseMove = (e) => {
@@ -67,10 +67,8 @@ const CoverageCard = ({ item, index }) => {
   );
 };
 
-// --- Componente para o Card de Link Direto (Porto/Azul - NÃO USADO NESTA PÁGINA) ---
-// Mantido aqui caso queira reintroduzir links diretos no futuro, mas não usado ativamente.
-// Pode ser removido se não for relevante.
-const DirectQuoteCard = ({ logoSrc, logoAlt, title, description, href }) => {
+// --- Componente para o Card de Link Direto (Porto - para planos específicos) ---
+const PortoPlanCard = ({ logoSrc, logoAlt, title, description, href }) => {
     const cardRef = React.useRef(null);
     const handleMouseMove = (e) => {
         if (!cardRef.current) return;
@@ -130,7 +128,7 @@ const DirectQuoteCard = ({ logoSrc, logoAlt, title, description, href }) => {
 };
 
 // --- Componente para o Card de Outra Modalidade (Estilo Moderno e Clicável) ---
-// Reutilizado
+// Este componente é o que estava dando o erro. Foi redefinido aqui.
 const InteractiveServiceLinkCard = ({ icon, title, href, index }) => {
     const cardRef = React.useRef(null);
     const handleMouseMove = (e) => {
@@ -183,8 +181,8 @@ const InteractiveServiceLinkCard = ({ icon, title, href, index }) => {
     );
 };
 
+
 // --- Componente para os Itens da Seção "Por Que Escolher" (Estilo Card Moderno) ---
-// Reutilizado
 const WhyChooseItem = ({ icon, text, index }) => {
      const cardRef = React.useRef(null);
     const handleMouseMove = (e) => {
@@ -231,7 +229,11 @@ const WhyChooseItem = ({ icon, text, index }) => {
 export default function SeguroMensalPage() {
   const whatsappRef = React.useRef(null);
   const whatsappNumber = '5521993519090';
-  const whatsappMessage = encodeURIComponent('Olá, gostaria de solicitar informações sobre o Plano Mensal de Assistência 24h da Loyds Seguros.');
+  // Mensagem padrão para o plano mensal da Porto Seguro
+  const whatsappMessage = encodeURIComponent('Olá! Tenho interesse no Plano Mensal da Porto Seguro. Gostaria de mais informações.');
+
+  // Link para o Plano Mensal da Porto Seguro (AJUSTE CONFORME NECESSÁRIO)
+  const portoMensalLink = "https://www.portoseguro.com.br/seguro-auto/coberturas-e-servicos/assistencia-24h"; // SUBSTITUA PELO LINK CORRETO SE TIVER UM ESPECÍFICO!
 
   React.useEffect(() => {
     const buttonEl = whatsappRef.current;
@@ -257,19 +259,21 @@ export default function SeguroMensalPage() {
 
 
   const otherInsuranceLinks = [
-    { title: 'Seguro Auto', href: '/auto', icon: <FaCar /> },
-    { title: 'Seguro Moto', href: '/moto', icon: <FaMotorcycle /> },
+    { title: 'Seguro Auto', href: '/auto', icon: <FaCar /> }, // Caminhos ajustados para a raiz
+    { title: 'Seguro Moto', href: '/moto', icon: <FaMotorcycle /> }, // Caminhos ajustados para a raiz
   ];
 
-  // Lista de serviços para o Plano Mensal (com ícones)
-  const coverages = [ // Mantido o nome 'coverages' por convenção, mas são 'serviços' aqui
-    { icon: <FaTruckPickup />, text: "REBOQUE / GUINCHO" },
+  // Lista de serviços/características para o Plano Mensal da Porto Seguro
+  const portoMensalFeatures = [
+    { icon: <FaCar />, text: "COBERTURA PARA SEU VEÍCULO (CARRO)" },
+    { icon: <FaTruckPickup />, text: "REBOQUE / GUINCHO SEM LIMITE DE KM (CONSULTE CONDIÇÕES)" },
     { icon: <FaTools />, text: "PANE ELÉTRICA / MECÂNICA" },
-    { icon: <FaCar />, text: "TROCA DE PNEUS" },
     { icon: <FaLock />, text: "CHAVEIRO" },
+    { icon: <FaCar />, text: "TROCA DE PNEUS" },
+    { icon: <FaFire />, text: "RECARRGA DE BATERIA" },
     { icon: <FaRoad />, text: "ATENDIMENTO EM TODO TERRITÓRIO NACIONAL" },
-    { icon: <FaCalendarCheck />, text: "PLANO MENSAL (SEM CONTRATO ANUAL)" },
-    // Adicionar mais itens se houver outras assistências
+    { icon: <FaCalendarCheck />, text: "PLANOS FLEXÍVEIS E SEM BUROCRACIA" },
+    { icon: <FaPlusCircle />, text: "DEMAIS SERVIÇOS DE ASSISTÊNCIA VEICULAR" },
   ];
 
     const whyChooseItems = [
@@ -283,44 +287,75 @@ export default function SeguroMensalPage() {
   return (
     <>
       <Head>
-        <title>Loyds Seguros | Plano Mensal Assistência 24h</title>
-        <meta name="description" content="Contrate o Plano Mensal de Assistência 24h da Loyds Seguros. Suporte completo sem a necessidade de seguro tradicional." />
+        <title>Loyds Seguros | Plano Mensal Porto Seguro</title>
+        <meta name="description" content="Contrate o Plano Mensal da Porto Seguro com a Loyds Seguros. Cobertura flexível para seu carro e assistência completa." />
       </Head>
 
       <Header />
 
+
+
       <main style={{ backgroundColor: '#121313' }} className="pt-[73px]">
-        {/* --- SEÇÃO HERO/INTRO DO PLANO MENSAL --- */}
+        {/* --- SEÇÃO HERO/INTRO DO PLANO MENSAL PORTO SEGURO --- */}
         <section className="relative w-full py-16 md:py-24 flex flex-col items-center justify-center text-center overflow-hidden" style={{ backgroundColor: '#121313' }}>
             <div className="container mx-auto px-4 max-w-5xl">
+                
+                < WhatsAppCTAGeneral />
+
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, ease: 'circOut' }}
                   className="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6"
                 >
-                    Plano Mensal Assistência 24h
+                    Plano Mensal Porto Seguro
                     <br/>
-                    <span className="text-white/70">suporte completo sem seguro tradicional.</span>
+                    <span className="text-white/70">Proteção e Assistência que se adapta a você.</span>
                 </motion.h1>
+                
                 <motion.p
                    initial={{ opacity: 0, y: 30 }}
                    animate={{ opacity: 1, y: 0 }}
                    transition={{ duration: 0.8, ease: 'circOut', delay: 0.2 }}
                    className="text-lg md:text-xl text-white/60 max-w-3xl mx-auto"
                 >
-                   Uma alternativa prática e flexível para quem busca assistência 24h em todo o Brasil, sem a necessidade de um contrato de seguro completo. Ideal para o seu dia a dia ou para imprevistos na estrada.
+                   Tenha a segurança e os serviços de assistência da Porto Seguro com a flexibilidade de um plano mensal. Ideal para quem busca tranquilidade no dia a dia ou para imprevistos, sem um compromisso anual.
                 </motion.p>
 
-                 {/* Não há cards de link direto para seguradoras nesta página */}
-
+                {/* --- SEÇÃO DE LINK DIRETO PARA COTAÇÃO (PORTO MENSAL) --- */}
+                <motion.div
+                    className="mt-16 max-w-md mx-auto"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    variants={{
+                        visible: { transition: { staggerChildren: 0.15 } },
+                    }}
+                >
+                    <PortoPlanCard
+                         logoSrc="/icons/porto1.jpeg" // Logo da Porto Seguro
+                         logoAlt="Logo Porto Seguro"
+                         title="Cote seu Plano Mensal Porto Seguro"
+                         description="Descubra os benefícios e simule agora mesmo."
+                         href={portoMensalLink} // Link para o plano mensal da Porto
+                    />
+                </motion.div>
+                 <motion.p
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true, amount: 0.3 }}
+                   transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
+                   className="mt-12 text-sm text-white/50 max-w-3xl mx-auto"
+                >
+                  Ao clicar, você será redirecionado para o site da Porto Seguro para simulação e contratação.
+                </motion.p>
             </div>
         </section>
 
         < PartnerLogos />
-        < WhatsAppCTAGeneral />
+    
 
-        {/* --- SEÇÃO SERVIÇOS OFERECIDOS (COM CARDS MODERNOS E ÍCONES) --- */}
+        {/* --- SEÇÃO CARACTERÍSTICAS DO PLANO (COM CARDS MODERNOS E ÍCONES) --- */}
         <section className="py-16 sm:py-24" style={{ backgroundColor: '#121313' }}>
           <div className="container mx-auto px-4">
             <motion.h2
@@ -330,7 +365,7 @@ export default function SeguroMensalPage() {
               transition={{ duration: 0.8, ease: 'circOut' }}
               className="text-4xl sm:text-5xl font-extrabold text-white tracking-tighter text-center mb-12"
             >
-              Serviços Essenciais 24h Inclusos
+              Principais Benefícios do Plano Mensal Porto Seguro
             </motion.h2>
             <motion.div
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6"
@@ -341,14 +376,14 @@ export default function SeguroMensalPage() {
                     visible: { transition: { staggerChildren: 0.08 } },
                  }}
             >
-              {/* Mapeia a lista de serviços/coberturas */}
-              {coverages.map((item, index) => (
+              {/* Mapeia a lista de características do plano */}
+              {portoMensalFeatures.map((item, index) => (
                 <CoverageCard key={index} item={item} index={index} />
               ))}
                {/* Adiciona cards vazios para alinhamento no grid (2 ou 3 colunas) */}
-               {coverages.length % 2 !== 0 && <div className="hidden md:block col-span-1"></div>}
-               {coverages.length % 3 === 1 && <div className="hidden lg:block col-span-1"></div>}
-               {coverages.length % 3 === 2 && <div className="hidden lg:block col-span-1"></div>}
+               {portoMensalFeatures.length % 2 !== 0 && <div className="hidden md:block col-span-1"></div>}
+               {portoMensalFeatures.length % 3 === 1 && <div className="hidden lg:block col-span-1"></div>}
+               {portoMensalFeatures.length % 3 === 2 && <div className="hidden lg:block col-span-1"></div>}
             </motion.div>
 
             {/* --- CTA WHATSAPP PULSANTE APÓS OS CARDS --- */}
@@ -356,16 +391,16 @@ export default function SeguroMensalPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: coverages.length * 0.07 + 0.3, ease: 'circOut' }}
+              transition={{ duration: 0.8, delay: portoMensalFeatures.length * 0.07 + 0.3, ease: 'circOut' }}
               className="mt-16 text-center flex flex-col items-center"
             >
               <p className="text-white/70 text-lg mb-8">
-                Tem dúvidas ou quer saber mais sobre como funciona o Plano Mensal?
+                Tem dúvidas ou quer saber mais sobre o Plano Mensal da Porto Seguro?
               </p>
                <p className="text-lo-peach font-bold mb-6">
                  Fale com um consultor Loyds Seguros agora mesmo!
               </p>
-              <Link href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`} passHref legacyBehavior>
+              <Link href={`https://wa.me/5521982854688?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20informa%C3%A7%C3%B5es%20sobre%20os%20seguros%20e%20planos%20da%20Loyds%20Seguros.`} passHref legacyBehavior>
                 <motion.a
                   ref={whatsappRef}
                   target="_blank"
@@ -392,9 +427,7 @@ export default function SeguroMensalPage() {
                    className="bg-lo-dark-blue/30 backdrop-blur-lg rounded-3xl border border-white/10 p-8 sm:p-12 lg:p-16 shadow-2xl shadow-black/20 text-white"
                 >
                     <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-8">O sucesso de nossos clientes é o que nos motiva...</h2>
-                    <p className="text-white/70 text-lg leading-relaxed text-center max-w-4xl mx-auto mb-8">Visamos construir relacionamentos de longo prazo, tendo como base a ética profissional. Estamos comprometidas com o sucesso de cada um de nossos clientes, pois acreditamos que o crescimento deles também será seu e de seus colaboradores.</p>
-                     <p className="text-white/70 text-lg leading-relaxed text-center max-w-4xl mx-auto mb-12">Quando nossos clientes ganham, nós também ganhamos. Fomos reconhecidos por nossas conquistas em categorias como diversidade, ética, excelência, inovação e integridade.</p>
-
+                    <p className="text-white/70 text-lg leading-relaxed text-center max-w-4xl mx-auto mb-12">Visamos construir relacionamentos de longo prazo, tendo como base a ética profissional. Estamos comprometidas com o sucesso de cada um de nossos clientes, pois acreditamos que o crescimento deles também será seu e de seus colaboradores. Fomos reconhecidos por nossas conquistas em categorias como diversidade, ética, excelência, inovação e integridade.</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div><h3 className="text-2xl font-bold text-lo-peach mb-4">Missão</h3><p className="text-white/70">Entregar soluções de qualidade na comercialização de prestação de nossos serviços. Proporcionar realização, satisfação no relacionamento com nossos clientes e colaboradores.</p></div>
                         <div><h3 className="text-2xl font-bold text-lo-peach mb-4">Visão</h3><p className="text-white/70">Nossa VISÃO é que se trabalharmos duro, sermos competentes, nos esforçarmos diariamente e honestamente para atender às mais diversas necessidades de nossos Clientes, todos os Fornecedores, Parceiros e Funcionários.</p></div>
@@ -412,76 +445,10 @@ export default function SeguroMensalPage() {
             </div>
         </section>
 
-              < WhatsAppCTAGeneral />
+        < WhatsAppCTAGeneral />
 
-         {/* --- SEÇÃO: POR QUE ESCOLHER A NOSSA EMPRESA? (Estilo Card Moderno) --- */}
+         {/* --- SEÇÃO DE OUTRAS MODALIDADES (CARDS MODERNOS E CLICÁVEIS) --- */}
          <section className="py-16 sm:py-24" style={{ backgroundColor: '#121313' }}>
-            <div className="container mx-auto px-4 text-center">
-                 <motion.h2
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, ease: 'circOut' }}
-                    className="text-4xl sm:text-5xl font-extrabold text-white tracking-tighter text-center mb-12"
-                >
-                    Por Que Escolher a Loyds Seguros?
-                </motion.h2>
-                 <motion.p
-                   initial={{ opacity: 0, y: 20 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true, amount: 0.3 }}
-                   transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-                   className="text-lg text-white/70 max-w-3xl mx-auto mb-12"
-                >
-                   Entregamos os resultados que você busca e porque consideramos que as nossas pessoas são o nosso maior patrimônio.
-                </motion.p>
-
-                <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
-                     initial="hidden"
-                     whileInView="visible"
-                     viewport={{ once: true, amount: 0.3 }}
-                     variants={{
-                        visible: { transition: { staggerChildren: 0.1 } },
-                    }}
-                >
-                    {whyChooseItems.map((item, index) => (
-                        <WhyChooseItem key={index} item={item} index={index} icon={item.icon} text={item.text}/>
-                    ))}
-                     {whyChooseItems.length % 2 !== 0 && (
-                        <div className="hidden md:block col-span-1"></div>
-                    )}
-                </motion.div>
-
-                 {/* Link para visitar (assumindo link para a seção de contato) - Mantido como antes */}
-                 <motion.div
-                   initial={{ opacity: 0, y: 30 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true, amount: 0.3 }}
-                   transition={{ duration: 0.8, delay: whyChooseItems.length * 0.1 + 0.3, ease: 'circOut' }}
-                   className="mt-16 text-center"
-                 >
-                    <Link href="#contato" passHref legacyBehavior>
-                         <motion.a
-                             className="inline-flex flex-col items-center font-semibold text-lo-peach hover:text-white transition-colors duration-300"
-                             whileHover={{ y: -3 }}
-                        >
-                            <div>
-                                <p className="text-white/70 text-lg mb-2">Gostaria de nos fazer uma visita?</p>
-                                <span className="inline-flex items-center">
-                                     Clique aqui e confira nosso endereço e o mapa de como chegar até a nós.
-                                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                                </span>
-                            </div>
-                        </motion.a>
-                    </Link>
-                 </motion.div>
-            </div>
-         </section>
-
-
-        {/* --- SEÇÃO DE OUTRAS MODALIDADES (CARDS MODERNOS E CLICÁVEIS) --- */}
-        <section className="py-16 sm:py-24" style={{ backgroundColor: '#121313' }}>
             <div className="container mx-auto px-4 text-center">
                 <motion.h2
                     initial={{ opacity: 0, y: 30 }}
@@ -501,15 +468,17 @@ export default function SeguroMensalPage() {
                         visible: { transition: { staggerChildren: 0.15 } },
                     }}
                 >
+                    {/* Mapeia os links de outros seguros */}
                     {otherInsuranceLinks.map((item, index) => (
                        <InteractiveServiceLinkCard
                            key={index}
                            icon={item.icon}
                            title={item.title}
-                           href={item.href}
+                           href={item.href} // Links para /auto e /moto
                            index={index}
                        />
                     ))}
+                    {/* Adiciona card vazio invisível se o número de itens for ímpar */}
                     {otherInsuranceLinks.length % 2 !== 0 && (
                         <div className="hidden md:block col-span-1"></div>
                     )}

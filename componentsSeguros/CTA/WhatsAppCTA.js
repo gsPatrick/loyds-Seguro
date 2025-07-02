@@ -144,7 +144,7 @@ const WhatsAppCTAGeneral = () => {
           </motion.div>
 
            <Link
-             href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
+             href={`https://wa.me/5521982854688?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20informa%C3%A7%C3%B5es%20sobre%20os%20seguros%20e%20planos%20da%20Loyds%20Seguros.`}
              passHref
              legacyBehavior
            >

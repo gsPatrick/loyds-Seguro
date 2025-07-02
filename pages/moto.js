@@ -298,6 +298,9 @@ export default function SeguroMotoPage() {
         {/* --- SEÇÃO HERO/INTRO DO SEGURO MOTO --- */}
         <section className="relative w-full py-16 md:py-24 flex flex-col items-center justify-center text-center overflow-hidden" style={{ backgroundColor: '#121313' }}>
             <div className="container mx-auto px-4 max-w-5xl">
+                
+                < WhatsAppCTAGeneral />
+
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -398,7 +401,7 @@ export default function SeguroMotoPage() {
                <p className="text-lo-peach font-bold mb-6">
                  Fale com um consultor Loyds Seguros agora mesmo!
               </p>
-              <Link href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`} passHref legacyBehavior>
+              <Link href={`https://wa.me/5521982854688?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20informa%C3%A7%C3%B5es%20sobre%20os%20seguros%20e%20planos%20da%20Loyds%20Seguros.`} passHref legacyBehavior>
                 <motion.a
                   ref={whatsappRef}
                   target="_blank"

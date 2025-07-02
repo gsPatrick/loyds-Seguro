@@ -1,4 +1,4 @@
-// componentsSeguros/Footer/Footer.js (VERSÃO "CORPORATE ANCHOR" CORRIGIDA)
+// componentsSeguros/Footer/Footer.js (VERSÃO FINAL ATUALIZADA)
 
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
@@ -31,11 +31,14 @@ const Footer = () => {
     };
 
     const contactInfo = [
-        { icon: <FaPhoneAlt size={18} />, text: '+55 11 99999-8888', href: 'tel:+5511999998888' },
-        { icon: <FaWhatsapp size={18} />, text: 'Atendimento WhatsApp', href: 'https://wa.me/5511999998888' },
-        { icon: <FaEnvelope size={18} />, text: 'contato@loydsseguros.com', href: 'mailto:contato@loydsseguros.com' },
-        { icon: <FaMapMarkerAlt size={18} />, text: 'Rua Exemplo, 123 - São Paulo/SP', href: '#' },
-        { icon: <FaLinkedin size={18} />, text: 'Loyds Seguros no LinkedIn', href: 'https://linkedin.com/company/loyds-seguros' },
+        { icon: <FaPhoneAlt size={18} />, text: '(21) 98285-4688', href: 'tel:+5521982854688' },
+        {
+            icon: <FaWhatsapp size={18} />,
+            text: 'Atendimento WhatsApp',
+            href: 'https://wa.me/5521982854688?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20informa%C3%A7%C3%B5es%20sobre%20os%20seguros%20e%20planos%20da%20Loyds%20Seguros.'
+        },
+        { icon: <FaEnvelope size={18} />, text: 'cálculo@loydseguros.com.br', href: 'mailto:cálculo@loydseguros.com.br' },
+        { icon: <FaMapMarkerAlt size={18} />, text: 'Travessa do Ouvidor, 5 - 2º andar. Centro - Rio de Janeiro - 20.040-040.', href: '#' },
     ];
 
     return (
@@ -52,15 +55,17 @@ const Footer = () => {
                 <motion.div variants={itemVariants} className="w-full h-px bg-white/10" />
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {/* Coluna 1 */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <motion.div variants={itemVariants} className="text-3xl font-extrabold text-white">
                             Loyds<span className="font-light opacity-70"> Seguros</span>
                         </motion.div>
                         <motion.p variants={itemVariants} className="mt-4 text-sm text-white/60 max-w-xs">
-                            Modernizando a proteção para sua jornada. Simples, digital e transparente.
+                            A Loyds Corretora de Seguros é habilitada na Susep para operar todos os tipos de Seguros.
                         </motion.p>
                     </div>
 
+                    {/* Coluna 2 */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <motion.h3 variants={itemVariants} className="text-lg font-bold text-white mb-4">
                             Contato e Suporte
@@ -82,33 +87,21 @@ const Footer = () => {
                         </ul>
                     </div>
 
+                    {/* Coluna 3 */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <motion.h3 variants={itemVariants} className="text-lg font-bold text-white mb-4">
                             Informações Legais
                         </motion.h3>
                         <motion.p variants={itemVariants} className="text-sm text-white/60">
-                            CNPJ: XX.XXX.XXX/XXXX-XX
+                            CNPJ: 41.311.114/0001-30
+                        </motion.p>
+                        <motion.p variants={itemVariants} className="mt-1 text-sm text-white/60">
+                            SUSEP: 21.211.25.55
                         </motion.p>
                         <motion.p variants={itemVariants} className="mt-2 text-sm text-white/60">
                             Horário de Atendimento: <br /> Seg. a Sex. das 9h às 18h
                         </motion.p>
                         <ul className="mt-4 space-y-2">
-                            <motion.li variants={itemVariants}>
-                                <Link
-                                    href="#"
-                                    className="text-white/60 hover:text-white transition-colors duration-300 text-sm"
-                                >
-                                    Política de Privacidade
-                                </Link>
-                            </motion.li>
-                            <motion.li variants={itemVariants}>
-                                <Link
-                                    href="#"
-                                    className="text-white/60 hover:text-white transition-colors duration-300 text-sm"
-                                >
-                                    Termos de Uso
-                                </Link>
-                            </motion.li>
                         </ul>
                     </div>
                 </div>
