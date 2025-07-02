@@ -272,14 +272,14 @@ export default function SeguroCarroPage() {
                     }}
                 >
                     <DirectQuoteCard
-                         logoSrc="/icons/portoSeguros.png"
+                         logoSrc="/icons/porto1.jpeg"
                          logoAlt="Logo Porto Seguro"
                          title="Cote na Porto Seguro"
                          description="Simule online diretamente com a Porto Seguro via Loyds."
                          href={portoLink}
                     />
                      <DirectQuoteCard
-                        logoSrc="/icons/azulSeguros.png"
+                        logoSrc="/icons/icon.png"
                         logoAlt="Logo Azul Seguros"
                         title="Cote na Azul Seguros"
                         description="Simule online diretamente com a Azul Seguros via Loyds."

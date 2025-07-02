@@ -327,7 +327,7 @@ export default function SeguroMotoPage() {
                 >
                     {/* Apenas o card da Porto Seguro para Moto */}
                     <DirectQuoteCard
-                         logoSrc="/icons/portoSeguros.png" // Caminho do seu logo Porto Seguro P/B
+                         logoSrc="/icons/porto1.jepg" // Caminho do seu logo Porto Seguro P/B
                          logoAlt="Logo Porto Seguro"
                          title="Cote na Porto Seguro"
                          description="Simule online diretamente com a Porto Seguro via Loyds."
