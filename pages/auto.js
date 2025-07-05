@@ -224,7 +224,7 @@ export default function SeguroCarroPage() {
     { icon: <FaPlusCircle />, text: "AUMENTO DE COBERTURA A TERCEIROS" },
     { icon: <FaCloudShowersHeavy />, text: "ALAGAMENTO" },
     { icon: <FaFire />, text: "INCÊNDIO" },
-    { icon: <FaTruckPickup />, text: "ASSISTÊNCIA 24H: REBOQUE, CHAVEIRO, TROCA DE PNEU, AUXÍLIO MECÂNICO, etc." },
+    { icon: <FaTruckPickup />, text: "REBOQUE, CHAVEIRO, TROCA DE PNEU, AUXÍLIO MECÂNICO, etc." },
     { icon: <FaTools />, text: "REPAROS PARA VIDROS, FARÓIS E RETROVISORES" },
     { icon: <FaCar />, text: "CARRO RESERVA (diferentes opções de diárias)" }, // Reutilizando ícone de carro, se quiser um diferente, adicione à importação
     { icon: <FaCalendarCheck />, text: "DEMAIS SERVIÇOS E COBERTURAS ADICIONAIS" }, // Reutilizando ícone de calendário
@@ -313,7 +313,7 @@ export default function SeguroCarroPage() {
               transition={{ duration: 0.8, ease: 'circOut' }}
               className="text-4xl sm:text-5xl font-extrabold text-white tracking-tighter text-center mb-12"
             >
-              Coberturas Essenciais e Serviços 24h
+              Coberturas Essenciais
             </motion.h2>
             <motion.div
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6" // Removi justify-items-center, ajustei colunas para mobile/sm

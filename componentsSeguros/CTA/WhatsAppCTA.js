@@ -124,7 +124,7 @@ const WhatsAppCTAGeneral = () => {
           </h2>
           <p className="text-lg text-white/70 max-w-3xl mx-auto mb-12">
             Fale com um de nossos consultores especializados via WhatsApp e descubra as melhores soluções em seguros
-            e planos de assistência 24h para seu veículo ou necessidade. Cotação rápida e consultoria transparente.
+            e planos de assistência para seu veículo ou necessidade. Cotação rápida e consultoria transparente.
           </p>
 
           <motion.div

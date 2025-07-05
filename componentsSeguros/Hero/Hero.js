@@ -118,7 +118,7 @@ const Hero = () => {
                             {/* Título atualizado para incluir o nome da empresa e o título solicitado */}
                             <h1 className="text-5xl md:text-6xl font-extrabold text-white tracking-tighter leading-tight">
                                 <span className="text-white/60">Loyds Seguros: </span>
-                                Seguro Auto, Moto e Assistência 24h com quem entende
+                                Seguro Auto, Moto e saireguro Mensal com quem entende
                             </h1>
                         </div>
                         <div className="hero-element mt-6">
