@@ -5,8 +5,8 @@ import Link from 'next/link';
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-// Ícones específicos para coberturas e outros seguros (removi FaCarSide, FaBoxes para simplicidade)
-import { FaWhatsapp, FaCar, FaMotorcycle, FaCalendarCheck, FaLock, FaUsers, FaPlusCircle, FaCloudShowersHeavy, FaFire, FaTruckPickup, FaTools } from 'react-icons/fa';
+// Ícones específicos para coberturas e outros seguros (adicionei FaEnvelope)
+import { FaWhatsapp, FaCar, FaMotorcycle, FaCalendarCheck, FaLock, FaUsers, FaPlusCircle, FaCloudShowersHeavy, FaFire, FaTruckPickup, FaTools, FaEnvelope } from 'react-icons/fa';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
@@ -243,7 +243,7 @@ export default function SeguroCarroPage() {
       <main style={{ backgroundColor: '#121313' }} className="pt-[73px]">
         {/* --- SEÇÃO HERO/INTRO DO SEGURO AUTO --- */}
         <section className="relative w-full py-16 md:py-24 flex flex-col items-center justify-center text-center overflow-hidden" style={{ backgroundColor: '#121313' }}>
-            <div className="container mx-auto px-4 max-w-5xl">
+            <div className="container mx-auto px-4 max-w-6xl">
               
               < WhatsAppCTAGeneral />
 
@@ -263,41 +263,80 @@ export default function SeguroCarroPage() {
                 >
                    Encontre a proteção ideal para o seu carro com agilidade e transparência. Na Loyds Seguros, intermediamos as melhores opções entre as principais seguradoras do mercado.
                 </motion.p>
+                
+                {/* --- LAYOUT DE 2 COLUNAS COM FORMULÁRIO E COTAÇÃO DIRETA --- */}
+                <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start text-left">
+                    {/* Coluna da Esquerda: Formulário */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: 'circOut', delay: 0.2 }}
+                        className="flex flex-col items-center md:items-start w-full"
+                    >
+                        <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">Cadastro Simplificado</h2>
+                        <form className="w-full max-w-md space-y-6 text-white">
+                            <div>
+                                <label htmlFor="name" className="block text-white/70 text-sm font-semibold mb-2">
+                                    Nome:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Digite o seu nome"
+                                    className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="phone" className="block text-white/70 text-sm font-semibold mb-2">
+                                    Telefone/Whatsapp:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="Digite o seu telefone"
+                                    className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center justify-center gap-2"
+                            >
+                                <FaEnvelope size={18} /> Enviar
+                            </button>
+                        </form>
+                    </motion.div>
 
-                {/* --- SEÇÃO DE LINKS DIRETOS PARA COTAÇÃO (CARDS MODERNOS) --- */}
-                <motion.div
-                    className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                    variants={{
-                        visible: { transition: { staggerChildren: 0.15 } },
-                    }}
-                >
-                    <DirectQuoteCard
-                         logoSrc="/icons/porto1.jpeg"
-                         logoAlt="Logo Porto Seguro"
-                         title="Cote na Porto Seguro"
-                         description="Simule online diretamente com a Porto Seguro via Loyds."
-                         href={portoLink}
-                    />
-                     <DirectQuoteCard
-                        logoSrc="/icons/icon.png"
-                        logoAlt="Logo Azul Seguros"
-                        title="Cote na Azul Seguros"
-                        description="Simule online diretamente com a Azul Seguros via Loyds."
-                        href={azulLink}
-                    />
-                </motion.div>
-                 <motion.p
-                   initial={{ opacity: 0, y: 20 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true, amount: 0.3 }}
-                   transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
-                   className="mt-12 text-sm text-white/50 max-w-3xl mx-auto"
-                >
-                  Ao clicar, você será redirecionado para o site da seguradora parceira para simulação.
-                </motion.p>
+                    {/* Coluna da Direita: Cotação Online */}
+                     <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: 'circOut', delay: 0.4 }}
+                        className="flex flex-col items-center md:items-start w-full"
+                    >
+                        <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">Ou cote online</h2>
+                        <div className="w-full flex flex-col gap-8">
+                            <DirectQuoteCard
+                                 logoSrc="/icons/porto1.jpeg"
+                                 logoAlt="Logo Porto Seguro"
+                                 title="Cote na Porto Seguro"
+                                 description="Simule online diretamente com a Porto Seguro via Loyds."
+                                 href={portoLink}
+                            />
+                             <DirectQuoteCard
+                                logoSrc="/icons/icon.png"
+                                logoAlt="Logo Azul Seguros"
+                                title="Cote na Azul Seguros"
+                                description="Simule online diretamente com a Azul Seguros via Loyds."
+                                href={azulLink}
+                            />
+                        </div>
+                        <p className="mt-8 text-sm text-white/50 w-full text-center md:text-left">
+                          Ao clicar, você será redirecionado para o site da seguradora parceira para simulação.
+                        </p>
+                    </motion.div>
+                </div>
             </div>
         </section>
          <PartnerLogos />
