@@ -182,11 +182,16 @@ const InteractiveServiceLinkCard = ({ icon, title, href, index }) => {
 
 export default function SeguroCarroPage() {
   const whatsappRef = React.useRef(null);
-  const whatsappNumber = '5521993519090';
-  const whatsappMessage = encodeURIComponent('Olá, gostaria de solicitar informações sobre Seguro Auto pela Loyds Seguros.');
+  // O número de WhatsApp e a mensagem não são mais usados para o CTA global flutuante, mas podem ser para o botão interno.
+  // const whatsappNumber = '5521993519090'; // Mantido para referência, mas o botão interno usa 982854688
+  // const whatsappMessage = encodeURIComponent('Olá, gostaria de solicitar informações sobre Seguro Auto pela Loyds Seguros.');
 
   const portoLink = "https://www.portoseguro.com.br/loja/seguro-auto?new_plan=1&social_media=OTHERS&link_uuid=16f87675-6d8c-4d88-838d-1f10387736d4&origem=SITE_CORRETOR&cod=01d8cd706dba47cb9f4d53043fdfdbda";
   const azulLink = "https://assinatura.azulseguros.com.br/?susep=40ZE3J&origem=SITECORRETOR";
+
+  // Número principal da Loyds para o CTA pulsante
+  const whatsappContactNumber = '5521982854688';
+  const whatsappMessageLoyds = encodeURIComponent('Olá, gostaria de solicitar informações sobre os seguros e planos da Loyds Seguros.');
 
 
   React.useEffect(() => {
@@ -245,7 +250,7 @@ export default function SeguroCarroPage() {
         <section className="relative w-full py-16 md:py-24 flex flex-col items-center justify-center text-center overflow-hidden" style={{ backgroundColor: '#121313' }}>
             <div className="container mx-auto px-4 max-w-6xl">
               
-              < WhatsAppCTAGeneral />
+              {/* < WhatsAppCTAGeneral /> REMOVIDO DAQUI */}
 
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
@@ -264,82 +269,124 @@ export default function SeguroCarroPage() {
                    Encontre a proteção ideal para o seu carro com agilidade e transparência. Na Loyds Seguros, intermediamos as melhores opções entre as principais seguradoras do mercado.
                 </motion.p>
                 
-                {/* --- LAYOUT DE 2 COLUNAS COM FORMULÁRIO E COTAÇÃO DIRETA --- */}
+                {/* --- LAYOUT DE 2 COLUNAS COM COTAÇÃO DIRETA E FORMULÁRIO (POSIÇÕES INVERTIDAS) --- */}
                 <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start text-left">
-                    {/* Coluna da Esquerda: Formulário */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: 'circOut', delay: 0.2 }}
-                        className="flex flex-col items-center md:items-start w-full"
-                    >
-                        <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">Cadastro Simplificado</h2>
-                        <form className="w-full max-w-md space-y-6 text-white">
-                            <div>
-                                <label htmlFor="name" className="block text-white/70 text-sm font-semibold mb-2">
-                                    Nome:
-                                </label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    placeholder="Digite o seu nome"
-                                    className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="phone" className="block text-white/70 text-sm font-semibold mb-2">
-                                    Telefone/Whatsapp:
-                                </label>
-                                <input
-                                    type="text"
-                                    id="phone"
-                                    name="phone"
-                                    placeholder="Digite o seu telefone"
-                                    className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
-                                />
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center justify-center gap-2"
-                            >
-                                <FaEnvelope size={18} /> Enviar
-                            </button>
-                        </form>
-                    </motion.div>
+                    {/* Coluna da Esquerda (AGORA): Cotação Online */}
+           <motion.div
+    initial={{ opacity: 0, x: 50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8, ease: 'circOut', delay: 0.4 }}
+    className="flex flex-col items-center md:items-start w-full"
+>
+    <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">Dúvidas, Esclarecimentos e Apoio, preencha os dados abaixo e vamos esclarecer qualquer situação</h2>
+    {/* --- INÍCIO DA MODIFICAÇÃO --- */}
+    <form
+        action="https://formspree.io/f/meozqvjp"
+        method="POST"
+        className="w-full max-w-md space-y-6 text-white"
+    >
+        {/* --- NOVOS CAMPOS OCULTOS --- */}
+        <input type="hidden" name="_subject" value="Novo Contato - Seguro Auto" />
+        <input type="hidden" name="tipo_seguro" value="Seguro Auto" />
+        {/* --- FIM DOS CAMPOS OCULTOS --- */}
 
-                    {/* Coluna da Direita: Cotação Online */}
-                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: 'circOut', delay: 0.4 }}
-                        className="flex flex-col items-center md:items-start w-full"
-                    >
-                        <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">Ou cote online</h2>
-                        <div className="w-full flex flex-col gap-8">
-                            <DirectQuoteCard
-                                 logoSrc="/icons/porto1.jpeg"
-                                 logoAlt="Logo Porto Seguro"
-                                 title="Cote na Porto Seguro"
-                                 description="Simule online diretamente com a Porto Seguro via Loyds."
-                                 href={portoLink}
-                            />
-                             <DirectQuoteCard
-                                logoSrc="/icons/icon.png"
-                                logoAlt="Logo Azul Seguros"
-                                title="Cote na Azul Seguros"
-                                description="Simule online diretamente com a Azul Seguros via Loyds."
-                                href={azulLink}
-                            />
-                        </div>
-                        <p className="mt-8 text-sm text-white/50 w-full text-center md:text-left">
-                          Ao clicar, você será redirecionado para o site da seguradora parceira para simulação.
-                        </p>
-                    </motion.div>
+        <div>
+            <label htmlFor="name" className="block text-white/70 text-sm font-semibold mb-2">
+                Nome:
+            </label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Digite o seu nome"
+                className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
+                required
+            />
+        </div>
+        <div>
+            <label htmlFor="phone" className="block text-white/70 text-sm font-semibold mb-2">
+                Telefone/Whatsapp:
+            </label>
+            <input
+                type="text"
+                id="phone"
+                name="phone"
+                placeholder="Digite o seu telefone"
+                className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
+                required
+            />
+        </div>
+        <button
+            type="submit"
+            className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center justify-center gap-2"
+        >
+            <FaEnvelope size={18} /> Enviar
+        </button>
+    </form>
+    {/* --- FIM DA MODIFICAÇÃO --- */}
+</motion.div>
+
+                    {/* Coluna da Direita (AGORA): Formulário */}
+<motion.div
+    initial={{ opacity: 0, x: 50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8, ease: 'circOut', delay: 0.4 }}
+    className="flex flex-col items-center md:items-start w-full"
+>
+    <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">Dúvidas, Esclarecimentos e Apoio, preencha os dados abaixo e vamos esclarecer qualquer situação</h2>
+    {/* --- INÍCIO DA MODIFICAÇÃO --- */}
+    <form
+        action="https://formspree.io/f/meozqvjp"
+        method="POST"
+        className="w-full max-w-md space-y-6 text-white"
+    >
+        {/* --- NOVOS CAMPOS OCULTOS --- */}
+        <input type="hidden" name="_subject" value="Novo Contato - Seguro Auto" />
+        <input type="hidden" name="tipo_seguro" value="Seguro Auto" />
+        {/* --- FIM DOS CAMPOS OCULTOS --- */}
+
+        <div>
+            <label htmlFor="name" className="block text-white/70 text-sm font-semibold mb-2">
+                Nome:
+            </label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Digite o seu nome"
+                className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
+                required
+            />
+        </div>
+        <div>
+            <label htmlFor="phone" className="block text-white/70 text-sm font-semibold mb-2">
+                Telefone/Whatsapp:
+            </label>
+            <input
+                type="text"
+                id="phone"
+                name="phone"
+                placeholder="Digite o seu telefone"
+                className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
+                required
+            />
+        </div>
+        <button
+            type="submit"
+            className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center justify-center gap-2"
+        >
+            <FaEnvelope size={18} /> Enviar
+        </button>
+    </form>
+    {/* --- FIM DA MODIFICAÇÃO --- */}
+</motion.div>
                 </div>
             </div>
         </section>
+        
          <PartnerLogos />
+         {/* CTA flutuante do WhatsApp agora após os logos dos parceiros */}
+         <WhatsAppCTAGeneral />
         
 
         {/* --- SEÇÃO COBERTURAS E CONDIÇÕES (COM CARDS MODERNOS E ÍCONES) --- */}
@@ -390,7 +437,7 @@ export default function SeguroCarroPage() {
                <p className="text-lo-peach font-bold mb-6">
                  Fale com um consultor Loyds Seguros agora mesmo!
               </p>
-              <Link href={`https://wa.me/5521982854688?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20informa%C3%A7%C3%B5es%20sobre%20os%20seguros%20e%20planos%20da%20Loyds%20Seguros.`} passHref legacyBehavior>
+              <Link href={`https://wa.me/${whatsappContactNumber}?text=${whatsappMessageLoyds}`} passHref legacyBehavior>
                 <motion.a
                   ref={whatsappRef}
                   target="_blank"
@@ -427,7 +474,7 @@ export default function SeguroCarroPage() {
             </div>
         </section>
 
-        < WhatsAppCTAGeneral />
+        {/* < WhatsAppCTAGeneral /> REMOVIDO DAQUI - JÁ ESTÁ APÓS PARTNERLOGOS */}
 
         {/* --- SEÇÃO DE OUTROS SEGUROS (CARDS MODERNOS E CLICÁVEIS) --- */}
         <section className="py-16 sm:py-24" style={{ backgroundColor: '#121313' }}>

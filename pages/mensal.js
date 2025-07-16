@@ -24,6 +24,67 @@ import Header from '../componentsSeguros/Header/Header.js';
 import Footer from '../componentsSeguros/Footer/Footer.js';
 import PartnerLogos from '@/componentsSeguros/PartnerLogos/PartnerLogos.js';
 
+// --- Componente para o Card de Link Direto (Copiado de auto.js para uso aqui) ---
+const DirectQuoteCard = ({ logoSrc, logoAlt, title, description, href }) => {
+    const cardRef = React.useRef(null);
+    const handleMouseMove = (e) => {
+        if (!cardRef.current) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+        e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+    };
+     const handleMouseLeave = (e) => {
+         e.currentTarget.style.setProperty('--mouse-x', `50%`);
+         e.currentTarget.style.setProperty('--mouse-y', `50%`);
+     };
+
+    return (
+        <Link href={href} passHref legacyBehavior>
+            <motion.a
+                ref={cardRef}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative w-full rounded-2xl p-6 flex flex-col items-center text-center overflow-hidden cursor-pointer"
+                 style={{
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    background: 'radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08), transparent 80%)',
+                    backdropFilter: 'blur(0px)',
+                    boxShadow: 'none'
+                }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.7, ease: 'easeOut' }}
+                whileHover={{ y: -8, scale: 1.02, boxShadow: '0 0 30px rgba(255,255,255,0.15)' }}
+                whileTap={{ scale: 0.98 }}
+                 onMouseMove={handleMouseMove}
+                 onMouseLeave={handleMouseLeave}
+            >
+                {/* Aumentado o tamanho da div para a logo */}
+                <div className="relative w-40 h-20 md:w-48 md:h-24 mb-4">
+                     <Image
+                        src={logoSrc}
+                        alt={logoAlt}
+                        fill
+                        style={{ objectFit: 'contain' }}
+                         sizes="(max-width: 768px) 160px, 192px"
+                    />
+                </div>
+                <span className="text-xl font-bold text-white mb-2 group-hover:text-white transition-colors duration-300 relative z-10">{title}</span>
+                <span className="text-sm text-white/60 relative z-10">{description}</span>
+
+                 <div className="mt-auto inline-flex items-center text-white/80 font-semibold transition-all duration-300 group-hover:text-white group-hover:tracking-wider pt-4 relative z-10">
+                        Calcular Online
+                        <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </div>
+            </motion.a>
+        </Link>
+    );
+};
+
+
 // --- Componente para o Card de Outra Modalidade (Estilo Moderno e Clicável) ---
 const InteractiveServiceLinkCard = ({ icon, title, href, index }) => {
     const cardRef = React.useRef(null);
@@ -138,7 +199,6 @@ export default function SeguroMensalPage() {
         <section className="relative w-full py-16 md:py-24 flex flex-col items-center justify-center text-center overflow-hidden" style={{ backgroundColor: '#121313' }}>
             <div className="container mx-auto px-4 max-w-6xl">
 
-
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -148,112 +208,124 @@ export default function SeguroMensalPage() {
                     Seguro Popular <span className="text-white/70">Porto/Azul</span>
                 </motion.h1>
 
-
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start text-left">
-                    {/* Coluna da Esquerda: Formulário e Logo */}
+                {/* --- LAYOUT DE 2 COLUNAS COM COTAÇÃO DIRETA E FORMULÁRIO (POSIÇÕES INVERTIDAS) --- */}
+                <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start text-left">
+                    {/* Coluna da Esquerda (AGORA): Cotação Online */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: 'circOut', delay: 0.2 }}
                         className="flex flex-col items-center md:items-start w-full"
                     >
-                        <h2 className="text-3xl font-bold text-white mb-6">Cadastro Simplificado</h2>
-                        <form className="w-full max-w-md space-y-6 text-white">
-                            <div>
-                                <label htmlFor="name" className="block text-white/70 text-sm font-semibold mb-2">
-                                    Nome:
-                                </label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    placeholder="Digite o seu nome"
-                                    className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="phone" className="block text-white/70 text-sm font-semibold mb-2">
-                                    Telefone/Whatsapp:
-                                </label>
-                                <input
-                                    type="text"
-                                    id="phone"
-                                    name="phone"
-                                    placeholder="Digite o seu telefone"
-                                    className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
-                                />
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center justify-center gap-2"
-                            >
-                                <FaEnvelope size={18} /> Enviar
-                            </button>
-                        </form>
-
-                        <div className="relative w-48 h-24 md:w-60 md:h-32 mt-12 mb-6">
-                            <Image
-                                src="/icons/icon.png" // Logo da Azul Seguros
-                                alt="Logo Azul Seguros"
-                                fill
-                                style={{ objectFit: 'contain' }}
-                                sizes="(max-width: 768px) 192px, 240px"
+                        <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">CALCULE E CONTRATE ONLINE SEU SEGURO NO GRUPO PORTO</h2>
+                        <div className="w-full flex flex-col gap-8">
+                            <DirectQuoteCard
+                                logoSrc="/icons/icon.png" // Logo da Azul Seguros
+                                logoAlt="Logo Azul Seguros"
+                                title="Cote na Azul Seguros"
+                                description="Simule online diretamente com a Azul Seguros via Loyds."
+                                href={azulLink}
                             />
                         </div>
-
-                        <Link href={azulLink} passHref legacyBehavior>
-                            <motion.a
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-orange-500 text-white rounded-lg font-bold shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-orange-600"
-                                whileTap={{ scale: 0.98 }}
-                            >
-                                SEGURO POPULAR PORTO/AZUL
-                            </motion.a>
-                        </Link>
-                         <motion.p
-                           initial={{ opacity: 0, y: 20 }}
-                           whileInView={{ opacity: 1, y: 0 }}
-                           viewport={{ once: true, amount: 0.3 }}
-                           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
-                           className="mt-6 text-sm text-white/50 max-w-xs mx-auto text-center md:text-left"
-                        >
+                        <p className="mt-8 text-sm text-white/50 w-full text-center md:text-left">
                           Ao clicar, você será redirecionado para o site da seguradora parceira para simulação.
-                        </motion.p>
-                    </motion.div>
-
-                    {/* Coluna da Direita: Coberturas e Contato WhatsApp */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: 'circOut', delay: 0.4 }}
-                        className="flex flex-col items-center md:items-start w-full text-white"
-                    >
-                        <h3 className="text-2xl font-bold mb-6 text-center md:text-left">COBERTURAS:</h3>
-                        <ul className="list-disc list-inside text-white/80 space-y-3 mb-10 w-full max-w-md text-left">
-                            {azulCoverages.map((coverage, index) => (
-                                <li key={index} className="text-sm md:text-base">
-                                    {coverage}
-                                </li>
-                            ))}
-                        </ul>
-
-                        <p className="text-white/70 text-base md:text-lg mb-4 text-center md:text-left">
-                            Estamos a disposição no whatsapp desta página ou através do <span className="font-bold text-lo-peach">(21) 98285-4688</span>, CONSULTE-NOS EM CASO DE DÚVIDAS.
-                        </p>
-                        <p className="text-white/70 text-base md:text-lg text-center md:text-left">
-                            (Estamos a disposição no whatsapp desta página ou através do <span className="font-bold text-lo-peach">(21) 98285-4688</span>.)
                         </p>
                     </motion.div>
+
+        {/* Coluna da Direita (AGORA): Formulário */}
+<motion.div
+    initial={{ opacity: 0, x: 50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8, ease: 'circOut', delay: 0.4 }}
+    className="flex flex-col items-center md:items-start w-full"
+>
+    <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">Dúvidas, Esclarecimentos e Apoio, preencha os dados abaixo e vamos esclarecer qualquer situação</h2>
+    {/* --- INÍCIO DA MODIFICAÇÃO --- */}
+    <form
+        action="https://formspree.io/f/meozqvjp"
+        method="POST"
+        className="w-full max-w-md space-y-6 text-white"
+    >
+        {/* --- NOVOS CAMPOS OCULTOS --- */}
+        <input type="hidden" name="_subject" value="Novo Contato - Seguro Mensal/Popular" />
+        <input type="hidden" name="tipo_seguro" value="Seguro Mensal/Popular" />
+        {/* --- FIM DOS CAMPOS OCULTOS --- */}
+
+        <div>
+            <label htmlFor="name" className="block text-white/70 text-sm font-semibold mb-2">
+                Nome:
+            </label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Digite o seu nome"
+                className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
+                required
+            />
+        </div>
+        <div>
+            <label htmlFor="phone" className="block text-white/70 text-sm font-semibold mb-2">
+                Telefone/Whatsapp:
+            </label>
+            <input
+                type="text"
+                id="phone"
+                name="phone"
+                placeholder="Digite o seu telefone"
+                className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
+                required
+            />
+        </div>
+        <button
+            type="submit"
+            className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center justify-center gap-2"
+        >
+            <FaEnvelope size={18} /> Enviar
+        </button>
+    </form>
+    {/* --- FIM DA MODIFICAÇÃO --- */}
+</motion.div>
                 </div>
             </div>
         </section>
 
-                        <WhatsAppCTAGeneral /> {/* CTA flutuante que aparece no canto superior direito */}
+        {/* --- SEÇÃO COBERTURAS (MOVIDA PARA FORA DO HERO) --- */}
+        <section className="py-16 sm:py-24" style={{ backgroundColor: '#121313' }}>
+            <div className="container mx-auto px-4 max-w-6xl text-left">
+                <motion.h2
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.8, ease: 'circOut' }}
+                    className="text-4xl sm:text-5xl font-extrabold text-white tracking-tighter text-center mb-12"
+                >
+                    Coberturas e Condições
+                </motion.h2>
+                <div className="flex flex-col items-center md:items-start w-full text-white">
+                    <h3 className="text-2xl font-bold mb-6 text-center md:text-left">Detalhes do Seguro Popular:</h3>
+                    <ul className="list-disc list-inside text-white/80 space-y-3 mb-10 w-full max-w-md mx-auto text-left">
+                        {azulCoverages.map((coverage, index) => (
+                            <li key={index} className="text-sm md:text-base">
+                                {coverage}
+                            </li>
+                        ))}
+                    </ul>
 
+                    <p className="text-white/70 text-base md:text-lg mb-4 text-center md:text-left max-w-lg mx-auto">
+                        Estamos a disposição no whatsapp desta página ou através do <span className="font-bold text-lo-peach">(21) 98285-4688</span>, CONSULTE-NOS EM CASO DE DÚVIDAS.
+                    </p>
+                    <p className="text-white/70 text-base md:text-lg text-center md:text-left max-w-lg mx-auto">
+                        (Estamos a disposição no whatsapp desta página ou através do <span className="font-bold text-lo-peach">(21) 98285-4688</span>.)
+                    </p>
+                </div>
+            </div>
+        </section>
 
         <PartnerLogos />
+        {/* CTA flutuante do WhatsApp agora após os logos dos parceiros */}
+        <WhatsAppCTAGeneral />
+
 
         {/* --- CTA WHATSAPP PULSANTE (AGORA ABAIXO DO CONTEÚDO PRINCIPAL) --- */}
         <motion.div
@@ -281,10 +353,6 @@ export default function SeguroMensalPage() {
                 </motion.a>
             </Link>
         </motion.div>
-
-        {/* --- SEÇÃO MOTIVAÇÃO / QUEM SOMOS --- */}
-
-
 
          {/* --- SEÇÃO DE OUTRAS MODALIDADES --- */}
          <section className="py-16 sm:py-24" style={{ backgroundColor: '#121313' }}>
