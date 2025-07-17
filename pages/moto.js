@@ -302,7 +302,8 @@ export default function SeguroMotoPage() {
         <section className="relative w-full py-16 md:py-24 flex flex-col items-center justify-center text-center overflow-hidden" style={{ backgroundColor: '#121313' }}>
             <div className="container mx-auto px-4 max-w-6xl">
                 
-                {/* < WhatsAppCTAGeneral /> REMOVIDO DAQUI */}
+                     < WhatsAppCTAGeneral /> 
+
 
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}

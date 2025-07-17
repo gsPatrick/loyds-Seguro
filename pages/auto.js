@@ -250,7 +250,8 @@ export default function SeguroCarroPage() {
         <section className="relative w-full py-16 md:py-24 flex flex-col items-center justify-center text-center overflow-hidden" style={{ backgroundColor: '#121313' }}>
             <div className="container mx-auto px-4 max-w-6xl">
               
-              {/* < WhatsAppCTAGeneral /> REMOVIDO DAQUI */}
+                      < WhatsAppCTAGeneral /> 
+
 
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
@@ -269,117 +270,86 @@ export default function SeguroCarroPage() {
                    Encontre a proteção ideal para o seu carro com agilidade e transparência. Na Loyds Seguros, intermediamos as melhores opções entre as principais seguradoras do mercado.
                 </motion.p>
                 
-                {/* --- LAYOUT DE 2 COLUNAS COM COTAÇÃO DIRETA E FORMULÁRIO (POSIÇÕES INVERTIDAS) --- */}
+                {/* --- LAYOUT DE 2 COLUNAS COM COTAÇÃO DIRETA E FORMULÁRIO --- */}
                 <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start text-left">
-                    {/* Coluna da Esquerda (AGORA): Cotação Online */}
-           <motion.div
-    initial={{ opacity: 0, x: 50 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8, ease: 'circOut', delay: 0.4 }}
-    className="flex flex-col items-center md:items-start w-full"
->
-    <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">Dúvidas, Esclarecimentos e Apoio, preencha os dados abaixo e vamos esclarecer qualquer situação</h2>
-    {/* --- INÍCIO DA MODIFICAÇÃO --- */}
-    <form
-        action="https://formspree.io/f/meozqvjp"
-        method="POST"
-        className="w-full max-w-md space-y-6 text-white"
-    >
-        {/* --- NOVOS CAMPOS OCULTOS --- */}
-        <input type="hidden" name="_subject" value="Novo Contato - Seguro Auto" />
-        <input type="hidden" name="tipo_seguro" value="Seguro Auto" />
-        {/* --- FIM DOS CAMPOS OCULTOS --- */}
+                    {/* Coluna da Esquerda: Cotação Online (Porto e Azul) */}
+                     <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: 'circOut', delay: 0.2 }}
+                        className="flex flex-col items-center md:items-start w-full"
+                    >
+                        <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">CALCULE E CONTRATE ONLINE SEU SEGURO NO GRUPO PORTO</h2>
+                        <div className="w-full flex flex-col gap-8">
+                           <DirectQuoteCard
+                                 logoSrc="/icons/porto1.jpeg"
+                                 logoAlt="Logo Porto Seguro"
+                                 title="Cote na Porto Seguro"
+                                 description="Simule online diretamente com a Porto Seguro via Loyds."
+                                 href={portoLink}
+                            />
+                            <DirectQuoteCard
+                                 logoSrc="/icons/icon.png"
+                                 logoAlt="Logo Azul Seguros"
+                                 title="Cote na Azul Seguros"
+                                 description="Simule online diretamente com a Azul Seguros via Loyds."
+                                 href={azulLink}
+                            />
+                        </div>
+                        <p className="mt-8 text-sm text-white/50 w-full text-center md:text-left">
+                          Ao clicar, você será redirecionado para o site da seguradora parceira para simulação.
+                        </p>
+                    </motion.div>
 
-        <div>
-            <label htmlFor="name" className="block text-white/70 text-sm font-semibold mb-2">
-                Nome:
-            </label>
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Digite o seu nome"
-                className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
-                required
-            />
-        </div>
-        <div>
-            <label htmlFor="phone" className="block text-white/70 text-sm font-semibold mb-2">
-                Telefone/Whatsapp:
-            </label>
-            <input
-                type="text"
-                id="phone"
-                name="phone"
-                placeholder="Digite o seu telefone"
-                className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
-                required
-            />
-        </div>
-        <button
-            type="submit"
-            className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center justify-center gap-2"
-        >
-            <FaEnvelope size={18} /> Enviar
-        </button>
-    </form>
-    {/* --- FIM DA MODIFICAÇÃO --- */}
-</motion.div>
-
-                    {/* Coluna da Direita (AGORA): Formulário */}
-<motion.div
-    initial={{ opacity: 0, x: 50 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8, ease: 'circOut', delay: 0.4 }}
-    className="flex flex-col items-center md:items-start w-full"
->
-    <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">Dúvidas, Esclarecimentos e Apoio, preencha os dados abaixo e vamos esclarecer qualquer situação</h2>
-    {/* --- INÍCIO DA MODIFICAÇÃO --- */}
-    <form
-        action="https://formspree.io/f/meozqvjp"
-        method="POST"
-        className="w-full max-w-md space-y-6 text-white"
-    >
-        {/* --- NOVOS CAMPOS OCULTOS --- */}
-        <input type="hidden" name="_subject" value="Novo Contato - Seguro Auto" />
-        <input type="hidden" name="tipo_seguro" value="Seguro Auto" />
-        {/* --- FIM DOS CAMPOS OCULTOS --- */}
-
-        <div>
-            <label htmlFor="name" className="block text-white/70 text-sm font-semibold mb-2">
-                Nome:
-            </label>
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Digite o seu nome"
-                className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
-                required
-            />
-        </div>
-        <div>
-            <label htmlFor="phone" className="block text-white/70 text-sm font-semibold mb-2">
-                Telefone/Whatsapp:
-            </label>
-            <input
-                type="text"
-                id="phone"
-                name="phone"
-                placeholder="Digite o seu telefone"
-                className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
-                required
-            />
-        </div>
-        <button
-            type="submit"
-            className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center justify-center gap-2"
-        >
-            <FaEnvelope size={18} /> Enviar
-        </button>
-    </form>
-    {/* --- FIM DA MODIFICAÇÃO --- */}
-</motion.div>
+                    {/* Coluna da Direita: Formulário de Contato */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: 'circOut', delay: 0.4 }}
+                        className="flex flex-col items-center md:items-start w-full"
+                    >
+                        <h2 className="text-3xl font-bold text-white mb-6 text-center md:text-left">Dúvidas, Esclarecimentos e Apoio, preencha os dados abaixo e vamos esclarecer qualquer situação</h2>
+                        <form
+                            action="https://formspree.io/f/meozqvjp"
+                            method="POST"
+                            className="w-full max-w-md space-y-6 text-white"
+                        >
+                            <input type="hidden" name="_subject" value="Novo Contato - Seguro Auto" />
+                            <input type="hidden" name="tipo_seguro" value="Seguro Auto" />
+                            <div>
+                                <label htmlFor="name" className="block text-white/70 text-sm font-semibold mb-2">
+                                    Nome:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Digite o seu nome"
+                                    className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="phone" className="block text-white/70 text-sm font-semibold mb-2">
+                                    Telefone/Whatsapp:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="Digite o seu telefone"
+                                    className="w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-lo-peach"
+                                    required
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center justify-center gap-2"
+                            >
+                                <FaEnvelope size={18} /> Enviar
+                            </button>
+                        </form>
+                    </motion.div>
                 </div>
             </div>
         </section>
@@ -474,7 +444,6 @@ export default function SeguroCarroPage() {
             </div>
         </section>
 
-        {/* < WhatsAppCTAGeneral /> REMOVIDO DAQUI - JÁ ESTÁ APÓS PARTNERLOGOS */}
 
         {/* --- SEÇÃO DE OUTROS SEGUROS (CARDS MODERNOS E CLICÁVEIS) --- */}
         <section className="py-16 sm:py-24" style={{ backgroundColor: '#121313' }}>
